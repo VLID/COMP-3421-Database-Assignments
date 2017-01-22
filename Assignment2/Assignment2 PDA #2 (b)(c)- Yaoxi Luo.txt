@@ -1,0 +1,208 @@
+Last login: Sun Jan 17 22:07:33 on ttys000
+lcocoxs-MacBook-Air:~ lcocox$ cd Desktop/
+lcocoxs-MacBook-Air:Desktop lcocox$ /usr/local/mysql/bin/mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.10 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| movies             |
+| mysql              |
+| performance_schema |
+| sailors            |
+| sys                |
+| test               |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> create database ToySale;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use ToySale;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> source createToyTables;
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_toysale |
++-------------------+
+| Country           |
+| Customer          |
+| Employee          |
+| Inventory         |
+| OrderLine         |
+| Orders            |
++-------------------+
+6 rows in set (0.00 sec)
+
+mysql> desc Country;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Country_id  | int(11)     | NO   | PRI | NULL    |       |
+| CountryName | varchar(50) | NO   |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc Customer;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| Cus_id      | int(11)       | NO   | PRI | NULL    |       |
+| FirstName   | varchar(50)   | NO   |     | NULL    |       |
+| LastName    | varchar(50)   | NO   |     | NULL    |       |
+| Address     | varchar(200)  | NO   |     | NULL    |       |
+| City        | varchar(30)   | NO   |     | NULL    |       |
+| PhoneNumber | decimal(20,0) | NO   |     | NULL    |       |
+| Email       | varchar(50)   | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> desc Employee;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| Emp_id      | int(11)       | NO   | PRI | NULL    |       |
+| FirstName   | varchar(50)   | NO   |     | NULL    |       |
+| LastName    | varchar(50)   | NO   |     | NULL    |       |
+| Gender      | varchar(1)    | NO   |     | NULL    |       |
+| BirthDate   | date          | NO   |     | NULL    |       |
+| HireDate    | date          | NO   |     | NULL    |       |
+| PhoneNumber | decimal(20,0) | NO   |     | NULL    |       |
+| Email       | varchar(50)   | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> desc Inventory;
++----------------+---------------+------+-----+---------+-------+
+| Field          | Type          | Null | Key | Default | Extra |
++----------------+---------------+------+-----+---------+-------+
+| Invent_id      | int(11)       | NO   | PRI | NULL    |       |
+| Country_id     | int(11)       | NO   | PRI | NULL    |       |
+| InventName     | varchar(50)   | NO   |     | NULL    |       |
+| Size           | varchar(50)   | NO   |     | NULL    |       |
+| Type           | varchar(50)   | NO   |     | NULL    |       |
+| OnHandQuantity | int(11)       | NO   |     | NULL    |       |
+| UnitPrice      | decimal(10,2) | NO   |     | NULL    |       |
++----------------+---------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> desc OrderLine;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| Order_id     | int(11)       | NO   | PRI | NULL    |       |
+| Invent_id    | int(11)       | NO   | PRI | NULL    |       |
+| Quantity     | int(11)       | NO   |     | NULL    |       |
+| SellingPrice | decimal(12,2) | NO   |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc Orders;
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| Order_id  | int(11) | NO   | PRI | NULL    |       |
+| Cus_id    | int(11) | NO   | PRI | NULL    |       |
+| Emp_id    | int(11) | NO   | PRI | NULL    |       |
+| OrderDate | date    | NO   |     | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> source insertValues;
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Customer;
++--------+-----------+----------+----------------------+-----------+-------------+-----------------+
+| Cus_id | FirstName | LastName | Address              | City      | PhoneNumber | Email           |
++--------+-----------+----------+----------------------+-----------+-------------+-----------------+
+|      1 | Bob       | Wang     | 1564 E. Girard Pl    | Englewood |  7208080001 | Bob@gmail.com   |
+|      2 | Tom       | Chen     | 1234 S. Pearl St     | Denver    |  7208080002 | Tom@gmail.com   |
+|      3 | John      | Hai      | 1111 S. Pearl St     | Denver    |  7208080003 | John@gamil.com  |
+|      4 | Peter     | Wei      | 2222 E. Arkansas Ave | Denver    |  7208080004 | Peter@gmail.com |
+|      5 | Jim       | Huang    | 3333 E. Florida Ave  | Denver    |  7208080005 | Jim@gmail.com   |
++--------+-----------+----------+----------------------+-----------+-------------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Employee;
++--------+-----------+----------+--------+------------+------------+-------------+-------------------+
+| Emp_id | FirstName | LastName | Gender | BirthDate  | HireDate   | PhoneNumber | Email             |
++--------+-----------+----------+--------+------------+------------+-------------+-------------------+
+|      1 | Helen     | Guo      | F      | 1980-01-01 | 2014-02-02 |  7207070001 | Helen@gmail.com   |
+|      2 | Joe       | Wu       | M      | 1983-03-03 | 2014-04-05 |  7207070002 | Joe@gmail.com     |
+|      3 | George    | Shan     | M      | 1985-04-02 | 2015-01-02 |  7207070003 | George@gmail.com  |
+|      4 | Gloria    | Tian     | F      | 1987-09-10 | 2014-06-08 |  7207070004 | Gloria@gmail.com  |
+|      5 | Vincent   | Bei      | M      | 1991-02-02 | 2015-03-05 |  7207070005 | Vincent@gmail.com |
++--------+-----------+----------+--------+------------+------------+-------------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Orders;
++----------+--------+--------+------------+
+| Order_id | Cus_id | Emp_id | OrderDate  |
++----------+--------+--------+------------+
+|        1 |      3 |      4 | 2015-08-11 |
+|        2 |      2 |      2 | 2015-09-02 |
+|        3 |      4 |      1 | 2015-10-24 |
+|        4 |      5 |      5 | 2015-11-11 |
+|        5 |      1 |      3 | 2015-12-12 |
++----------+--------+--------+------------+
+5 rows in set (0.00 sec)
+
+mysql> quit;
+Bye
+lcocoxs-MacBook-Air:Desktop lcocox$ 

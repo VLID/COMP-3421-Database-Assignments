@@ -1,0 +1,236 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| ToySale            |
+| movies             |
+| mysql              |
+| performance_schema |
+| sailors            |
+| sys                |
+| test               |
++--------------------+
+8 rows in set (0.02 sec)
+
+mysql> use ToySale;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_toysale |
++-------------------+
+| Country           |
+| Customer          |
+| Employee          |
+| Inventory         |
+| OrderLine         |
+| Orders            |
++-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select count(*) from Country;
++----------+
+| count(*) |
++----------+
+|       10 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from Customer;
++----------+
+| count(*) |
++----------+
+|     3000 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from Employee;
++----------+
+| count(*) |
++----------+
+|     1000 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from Inventory;
++----------+
+| count(*) |
++----------+
+|    20000 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from OrderLine;
++----------+
+| count(*) |
++----------+
+|    19997 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from Orders;
++----------+
+| count(*) |
++----------+
+|     5000 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> desc Country;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Country_id  | int(11)     | NO   | PRI | NULL    |       |
+| CountryName | varchar(50) | NO   |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc Customer;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Cus_id | int(11)     | NO   | PRI | NULL    |       |
+| Name   | varchar(50) | NO   |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc Employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Emp_id   | int(11)     | NO   | PRI | NULL    |       |
+| Name     | varchar(50) | NO   |     | NULL    |       |
+| Gender   | varchar(1)  | NO   |     | NULL    |       |
+| Age      | int(11)     | NO   |     | NULL    |       |
+| HireDate | date        | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc Inventory;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| Invent_id  | int(11)     | NO   | PRI | NULL    |       |
+| Country_id | int(11)     | NO   | PRI | NULL    |       |
+| InventName | varchar(50) | NO   |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc OrderLine;
++------------------+---------+------+-----+---------+-------+
+| Field            | Type    | Null | Key | Default | Extra |
++------------------+---------+------+-----+---------+-------+
+| Order_id         | int(11) | NO   | PRI | NULL    |       |
+| Invent_id        | int(11) | NO   | PRI | NULL    |       |
+| Quantity         | int(11) | NO   |     | NULL    |       |
+| UnitSellingPrice | int(11) | NO   |     | NULL    |       |
++------------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc Orders;
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| Order_id  | int(11) | NO   | PRI | NULL    |       |
+| Cus_id    | int(11) | NO   | PRI | NULL    |       |
+| Emp_id    | int(11) | NO   | PRI | NULL    |       |
+| OrderDate | date    | NO   |     | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Customer where Cus_id < 10;
++--------+--------+
+| Cus_id | Name   |
++--------+--------+
+|      1 | Vince1 |
+|      2 | Vince2 |
+|      3 | Vince3 |
+|      4 | Vince4 |
+|      5 | Vince5 |
+|      6 | Vince6 |
+|      7 | Vince7 |
+|      8 | Vince8 |
+|      9 | Vince9 |
++--------+--------+
+9 rows in set (0.00 sec)
+
+mysql> select * from Employee where Emp_id < 10;
++--------+---------+--------+-----+------------+
+| Emp_id | Name    | Gender | Age | HireDate   |
++--------+---------+--------+-----+------------+
+|      1 | Christ1 | M      |  41 | 2012-05-01 |
+|      2 | Christ2 | F      |  27 | 2003-07-16 |
+|      3 | Christ3 | M      |  19 | 1996-01-15 |
+|      4 | Christ4 | M      |  18 | 2007-08-28 |
+|      5 | Christ5 | F      |  46 | 2010-09-06 |
+|      6 | Christ6 | M      |  21 | 1998-04-17 |
+|      7 | Christ7 | F      |  28 | 1999-11-09 |
+|      8 | Christ8 | F      |  32 | 1991-07-19 |
+|      9 | Christ9 | F      |  19 | 2003-12-22 |
++--------+---------+--------+-----+------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from Inventory where Invent_id < 10;
++-----------+------------+------------+
+| Invent_id | Country_id | InventName |
++-----------+------------+------------+
+|         1 |          6 | Toy1       |
+|         2 |          8 | Toy2       |
+|         3 |          2 | Toy3       |
+|         4 |          8 | Toy4       |
+|         5 |          3 | Toy5       |
+|         6 |          7 | Toy6       |
+|         7 |          5 | Toy7       |
+|         8 |          8 | Toy8       |
+|         9 |          8 | Toy9       |
++-----------+------------+------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from Orders where Emp_id = 1;
++----------+--------+--------+------------+
+| Order_id | Cus_id | Emp_id | OrderDate  |
++----------+--------+--------+------------+
+|      669 |    390 |      1 | 2013-05-02 |
+|     1780 |   2729 |      1 | 2012-01-28 |
+|     2470 |    819 |      1 | 2014-10-04 |
+|     3202 |   1583 |      1 | 2013-10-03 |
+|     4163 |   2224 |      1 | 2012-03-17 |
+|     4475 |    364 |      1 | 2012-10-16 |
+|     4744 |   1461 |      1 | 2013-02-07 |
++----------+--------+--------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from OrderLine where Order_id = 10;
++----------+-----------+----------+------------------+
+| Order_id | Invent_id | Quantity | UnitSellingPrice |
++----------+-----------+----------+------------------+
+|       10 |      1444 |       11 |               16 |
+|       10 |     13504 |        7 |               53 |
+|       10 |     17136 |       20 |               18 |
++----------+-----------+----------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from OrderLine where Invent_id = 10;
+Empty set (0.01 sec)
+
+mysql> select * from OrderLine where Invent_id = 1;
++----------+-----------+----------+------------------+
+| Order_id | Invent_id | Quantity | UnitSellingPrice |
++----------+-----------+----------+------------------+
+|     2174 |         1 |       12 |               17 |
+|     4552 |         1 |       14 |               31 |
++----------+-----------+----------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Orders where Cus_id =10;
++----------+--------+--------+------------+
+| Order_id | Cus_id | Emp_id | OrderDate  |
++----------+--------+--------+------------+
+|       65 |     10 |    994 | 2012-08-01 |
++----------+--------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> quit;

@@ -1,0 +1,54 @@
+create table Customer(
+	Cus_id int,
+	FirstName varchar(50) NOT NULL,
+	LastName varchar(50) NOT NULL,
+	Address varchar(200) NOT NULL,
+	City varchar(30) NOT NULL,
+	PhoneNumber decimal(20) NOT NULL,
+	Email varchar(50),
+	Primary Key (Cus_id));
+
+create table Employee(
+	Emp_id int,
+	FirstName varchar(50) NOT NULL,
+	LastName varchar(50) NOT NULL,
+	Gender varchar(1) NOT NULL,
+	BirthDate date NOT NULL,
+	HireDate date NOT NULL,
+	PhoneNumber decimal(20) NOT NULL,
+	Email varchar(50),
+	Primary Key (Emp_id));
+
+create table Country(
+	Country_id int,
+	CountryName varchar(50) NOT NULL,
+	Primary Key (Country_id));
+
+create table Orders(
+	Order_id int,
+	Cus_id int,
+	Emp_id int,
+	OrderDate date NOT NULL,
+	Primary Key (Order_id, Cus_id, Emp_id),
+	Foreign Key (Cus_id) references Customer(Cus_id),
+	Foreign Key (Emp_id) references Employee(Emp_id));
+
+create table Inventory(
+	Invent_id int,
+	Country_id int,
+	InventName varchar(50) NOT NULL,
+	Size varchar(50) NOT NULL,
+	Type varchar(50) NOT NULL,
+	OnHandQuantity int NOT NULL,
+	UnitPrice decimal(10,2) NOT NULL,
+	Primary Key (Invent_id, Country_id),
+	Foreign Key (Country_id) references Country(Country_id));
+
+create table OrderLine(
+	Order_id int,
+	Invent_id int,
+	Quantity int NOT NULL,
+	SellingPrice decimal(12,2) NOT NULL,
+	Primary Key (Order_id, Invent_id),
+	Foreign Key (Order_id) references Orders(Order_id),
+	Foreign Key (Invent_id) references Inventory(Invent_id));
